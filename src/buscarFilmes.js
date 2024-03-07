@@ -5,7 +5,7 @@ const iconePesquisa = document.querySelector('.searchIcon')
 iconePesquisa.addEventListener('click', searchMovie);
 
 inputPesquisa.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') { // Press enter (submit)
+  if (event.key === 'Enter') { 
     searchMovie()
     return
   }

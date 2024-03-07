@@ -6,9 +6,16 @@ async function getPopularMovies() {
   const res = await fetch(url);
   const data = await res.json();
   movies = data.results;
-  criarFilme(movies);
+  return movies;
+  
   
 } 
-getPopularMovies();
+
+async function exibirFilmes(){
+  const movies =  await getPopularMovies();
+  criarFilme(movies);
+}
+
+exibirFilmes();
 
 

@@ -17,6 +17,11 @@ async function searchMovie() {
     if (filmePesquisado != '') {
       cleanAllMovies()
       const filmesFiltrados = await searchMovieByName(filmePesquisado)
+    }else{
+      cleanAllMovies();
+      const movies =  await getPopularMovies();
+      exibirFilmes(movies)
+      
     }
   }
 

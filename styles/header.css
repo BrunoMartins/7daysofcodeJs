@@ -14,8 +14,7 @@ header{
 .input__container {
     background-color: rgba(255, 255, 255, 0.2);
     width: 40%;
-    margin: 2em  auto;
-    margin-bottom: 2rem;
+    margin: 2em  auto 1em auto;
     display: flex;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
@@ -53,4 +52,11 @@ header{
     background-color: transparent;
     color: transparent;
     
+  }
+
+  button{
+    width: 100px;
+    align-self: center;
+    margin-bottom: 1em;
+    cursor: pointer;
   }

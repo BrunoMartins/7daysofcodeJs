@@ -50,5 +50,13 @@ function criarFilme(movies) {
    
 }
 
+const botaoFiltrar = document.getElementById('limpar-filtro');
 
+botaoFiltrar.addEventListener('click',()=>{
+    cleanAllMovies();
+    inputPesquisa.value = "";
+    inputCheckAvaliacao.checked = false;
+    inputCheckFavoritos.checked = false;
+    criarFilme(movies);
+})
 

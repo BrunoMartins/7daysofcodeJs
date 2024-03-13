@@ -23,12 +23,19 @@ const inputCheckFavoritos = document.getElementById('favoritos');
 inputCheckFavoritos.addEventListener('change', verificarCheckbox);
 
 async function verificarCheckbox() {
+    const inputPesquisa = document.getElementById('movie-name').value;
     const isChecked = inputCheckFavoritos.checked;
     if (isChecked) {
         cleanAllMovies();
         const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
         criarFilme(favoritos);
-    } else {
+    } else if (inputPesquisa !== ''){
+        cleanAllMovies();
+        moviesPesquisados = await searchMovieByName(inputPesquisa); 
+            criarFilme(moviesPesquisados);
+    }
+    
+    else {
         cleanAllMovies();
         exibirFilmes();
     }

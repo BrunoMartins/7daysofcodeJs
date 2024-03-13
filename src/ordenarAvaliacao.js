@@ -1,35 +1,35 @@
-    const inputCheckAvaliacao = document.getElementById('avaliacao');
+const inputCheckAvaliacao = document.getElementById('avaliacao');
 
-    inputCheckAvaliacao.addEventListener('change', ordenarAvaliacao);
+inputCheckAvaliacao.addEventListener('change', ordenarAvaliacao);
 
 
-    async function ordenarAvaliacao (){
-        const isChecked = inputCheckAvaliacao.checked;
-        const inputPesquisa = document.getElementById('movie-name').value;
+async function ordenarAvaliacao() {
+    const isChecked = inputCheckAvaliacao.checked;
+    const inputPesquisa = document.getElementById('movie-name').value;
+
+    if (isChecked) {
+        cleanAllMovies();
         let movies;
-        if(isChecked){
-            cleanAllMovies();
-            if (inputPesquisa != '') {
-                movies = await searchMovieByName(inputPesquisa);
-            } else {
-                movies = await getPopularMovies();
-            }
-            
-                filmesOrdenados = movies.sort((a,b) => b.vote_average - a.vote_average);
-                criarFilme(filmesOrdenados);
-           
+        if (inputPesquisa !== '' && !inputCheckFavoritos.checked) {
+            movies = await searchMovieByName(inputPesquisa);
+        } else if (inputCheckFavoritos.checked) {
+            movies = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
         } else {
-
-            if (inputPesquisa != ''){
-                cleanAllMovies();
-                moviesPesquisados = await searchMovieByName(inputPesquisa);
-                criarFilme(moviesPesquisados);
-                }else{
-
-                    cleanAllMovies();
+            movies = await getPopularMovies();
+        }
+        filmesOrdenados = movies.sort((a, b) => b.vote_average - a.vote_average);
+        criarFilme(filmesOrdenados);
+    } else {
+        cleanAllMovies();
+        if (inputPesquisa !== '' && !inputCheckFavoritos.checked ) {
+            moviesPesquisados = await searchMovieByName(inputPesquisa); 
+            criarFilme(moviesPesquisados);
+        } else if (inputCheckFavoritos.checked) {
+            moviesFavoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || []; 
+            criarFilme(moviesFavoritos);
+        } else {
             exibirFilmes();
-                }
-            
-        }   
+        }
     }
+}
 

@@ -15,9 +15,15 @@
             <input type="text" name="movie-name" id="movie-name" placeholder="Digite algum filme para pesquisar...">
             <img src="images/search-icon.svg" alt="Ícone de pesquisa" class="searchIcon">
           </div>
-        <div class="input__favoritos">
-            <input type="checkbox" name="favoritos" id="favoritos">
-            <label for="favoritos">Mostrar apenas meus filmes favoritos</label>
+        <div class="input__checkbox">
+            <div>
+              <input type="checkbox" name="favoritos" id="favoritos">
+              <label for="favoritos">Mostrar apenas meus filmes favoritos</label>
+            </div>
+            <div>
+              <input type="checkbox" name="avaliacao" id="avaliacao">
+              <label for="avaliacao">Ordenar por avaliação</label>
+            </div>
           </div>
     </header>
     <main class="filmes__main">
@@ -27,5 +33,6 @@
    <script src="src/filmes.js"></script>
    <script src="src/buscarFilmes.js"></script>
    <script src="src/favoritos.js"></script>
+   <script src="src/ordenarAvaliacao.js"></script>
 </body>
 </html>

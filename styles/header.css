@@ -41,13 +41,15 @@ header{
     font-weight: 500;
   }
 
-  .input__favoritos {
-    text-align: center;
+  .input__checkbox {
+    gap: 1em;
     margin-bottom: 2rem;
     color: #FFF;
+    display: flex;
+    flex-direction: column;
   }
 
-  .input__favoritos input {
+  .input__checkbox input {
     background-color: transparent;
     color: transparent;
     

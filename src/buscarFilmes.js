@@ -16,7 +16,8 @@ async function searchMovie() {
     const filmePesquisado = inputPesquisa.value;
     if (filmePesquisado != '') {
       cleanAllMovies()
-      const filmesFiltrados = await searchMovieByName(filmePesquisado)
+      const filmesFiltrados = await searchMovieByName(filmePesquisado);
+      criarFilme(filmesFiltrados);
     }else{
       cleanAllMovies();
       const movies =  await getPopularMovies();
@@ -32,7 +33,7 @@ async function searchMovieByName(title) {
     const res = await fetch(url);
     const data = await res.json();
     const movies = data.results
-    criarFilme(movies);
+    return movies;
   }
 
   function cleanAllMovies() {

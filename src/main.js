@@ -13,7 +13,7 @@ function criarFilme(movies) {
                         <span class="filmes__titulo">${movie.title} (${year})</span>
                         <div class="filmes__avaliacao">
                             <div>
-                                <img src="images/Star.svg" alt="">
+                                <img src="images/Star.svg" alt="" class="filmes__avaliacao-botao">
                                 <span class="filmes__span">${movie.vote_average}</span>
                             </div>
                             <div>
@@ -34,16 +34,21 @@ function criarFilme(movies) {
     botoesFavoritos.forEach(botao => {
         botao.addEventListener('click', () => {
             const movieId = botao.id;
-            const isFavorited = isFilmeFavorito(movieId);
+            const movie = movies.find(movie => movie.id === parseInt(movieId));//precisa da conversao para ser tratado como um número inteiro
+            const isFavorited = isFilmeFavorito(movie.id);
 
             if (isFavorited) {
-                removerFilmeFavorito(movieId);
+                removerFilmeFavorito(movie);
             } else {
-                adicionarFilmeFavorito(movieId);
+                adicionarFilmeFavorito(movie);
             }
 
             botao.src = isFavorited ? 'images/heart.svg' : 'images/Vector.svg';//atualiza a imagem do favorito
         });
     });
+
+   
 }
+
+
 

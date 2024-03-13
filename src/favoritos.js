@@ -1,43 +1,38 @@
 // Função para verificar se um filme é favorito
 function isFilmeFavorito(movieId) {
     const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
-    return favoritos.includes(movieId.toString());
+    return favoritos.some(movie => movie.id === movieId);
 }
 
 // Função para adicionar um filme aos favoritos
-function adicionarFilmeFavorito(movieId) {
+function adicionarFilmeFavorito(movie) {
     const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
-    favoritos.push(movieId.toString());
+    favoritos.push(movie);
     localStorage.setItem('filmesFavoritos', JSON.stringify(favoritos));
 }
 
 // Função para remover um filme dos favoritos
-function removerFilmeFavorito(movieId) {
+function removerFilmeFavorito(movie) {
     let favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
-    favoritos = favoritos.filter(id => id !== movieId.toString());
+    favoritos = favoritos.filter(favMovie => favMovie.id !== movie.id);
     localStorage.setItem('filmesFavoritos', JSON.stringify(favoritos));
 }
 
-const inputCheck = document.getElementById('favoritos');
+const inputCheckFavoritos = document.getElementById('favoritos');
 
-inputCheck.addEventListener('change', verificarCheckbox);
+inputCheckFavoritos.addEventListener('change', verificarCheckbox);
 
 async function verificarCheckbox() {
-    const isChecked = inputCheck.checked;
+    const isChecked = inputCheckFavoritos.checked;
     if (isChecked) {
         cleanAllMovies();
         const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
-        const filmesFavoritos = await getFavoriteMovies(favoritos);
-        criarFilme(filmesFavoritos);
+        criarFilme(favoritos);
     } else {
         cleanAllMovies();
         exibirFilmes();
     }
 }
 
-async function getFavoriteMovies(favoritos) {
-    const allMovies = await getPopularMovies();
-    const favoriteMovies = allMovies.filter(movie => favoritos.includes(movie.id.toString()));//retorna um array que contém somente os filmes com o id que está armazenado no array favoritos
-    return favoriteMovies;}
 
     

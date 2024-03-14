@@ -42,7 +42,7 @@ header{
 
   .input__checkbox {
     gap: 1em;
-    margin-bottom: 2rem;
+    margin-bottom: 1em;
     color: #FFF;
     display: flex;
     flex-direction: column;

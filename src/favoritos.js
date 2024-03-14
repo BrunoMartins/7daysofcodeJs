@@ -27,18 +27,39 @@ async function verificarCheckbox() {
     const isChecked = inputCheckFavoritos.checked;
     if (isChecked) {
         cleanAllMovies();
+        ocultaPagination();
         const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
         criarFilme(favoritos);
     } else if (inputPesquisa !== ''){
         cleanAllMovies();
-        moviesPesquisados = await searchMovieByName(inputPesquisa); 
+        exibePagination();
+        moviesPesquisados = await searchMovieByName(inputPesquisa,currentPagePesquisa); 
             criarFilme(moviesPesquisados);
-    }
-    
-    else {
+            
+    } else {
         cleanAllMovies();
+        exibePagination();
         exibirFilmes();
     }
+    
+}
+
+function ocultaPagination (){
+    firstPageButton.style.display = 'none';
+        prevPageButton.style.display = 'none';
+        nextPageButton.style.display = 'none';
+        lastPageButton.style.display = 'none';
+        campoNumeroPagination.style.display = 'none';
+
+}
+
+function exibePagination(){
+    firstPageButton.style.display = 'flex';
+        prevPageButton.style.display = 'flex';
+        nextPageButton.style.display = 'flex';
+        lastPageButton.style.display = 'flex';
+        campoNumeroPagination.style.display = 'flex';
+
 }
 
 

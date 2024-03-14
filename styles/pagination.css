@@ -1,0 +1,31 @@
+ .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 8px;
+}
+
+ .controls div {
+    cursor: pointer;
+
+    /* border: 1px solid #eee; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cinza-input);
+
+    font-size: 20px;
+}
+
+ .controls div:not(.numbers),
+ .controls div.numbers div{
+    width: 40px;
+    height: 40px;
+}
+
+ .controls div.numbers div:hover,.controls div:not(.numbers):hover,
+.controls div.numbers div.active {
+    color: var(--branco-principal);
+}

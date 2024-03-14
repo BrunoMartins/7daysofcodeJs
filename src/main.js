@@ -1,3 +1,6 @@
+
+
+
 const movieElement = document.querySelector('.filmes__main');
 
 function criarFilme(movies) {
@@ -54,9 +57,10 @@ const botaoFiltrar = document.getElementById('limpar-filtro');
 
 botaoFiltrar.addEventListener('click',()=>{
     cleanAllMovies();
+    exibePagination();
     inputPesquisa.value = "";
     inputCheckAvaliacao.checked = false;
     inputCheckFavoritos.checked = false;
-    criarFilme(movies);
+    updateMovies();
 })
 

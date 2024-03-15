@@ -64,3 +64,33 @@ botaoFiltrar.addEventListener('click',()=>{
     updateMovies();
 })
 
+
+const botaoLimparFavorito = document.getElementById('limpar-favoritos');
+
+botaoLimparFavorito.addEventListener('click', limpaFavoritos)
+
+function limpaFavoritos() {
+    let favoritos = [];
+    localStorage.setItem('filmesFavoritos', JSON.stringify(favoritos));
+
+    // Atualizar a imagem de todos os botões de favoritos
+    const botoesFavoritos = document.querySelectorAll('.filmes__favoritos-botao');
+    botoesFavoritos.forEach(botao => {
+        botao.src =  'images/heart.svg';
+    });
+}
+
+const botaoInicio = document.getElementById('inicio');
+
+botaoInicio.addEventListener('click', voltarInicio);
+
+ function voltarInicio(){
+    cleanAllMovies();
+    currentPage = 1;
+  exibePagination();
+    inputPesquisa.value = "";
+    inputCheckAvaliacao.checked = false;
+    inputCheckFavoritos.checked = false;
+    updateMovies();
+
+}

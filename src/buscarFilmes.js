@@ -27,7 +27,7 @@ async function searchMovie() {
       cleanAllMovies();
       campoNumeroPagination.textContent = currentPage;
       const movies =  await getPopularMovies(currentPage);
-      exibirFilmes(movies)
+      criarFilme(movies);
       
     }
   }

@@ -75,7 +75,7 @@ lastPageButton.addEventListener('click', () => {
 
 async function updateMovies() {
     cleanAllMovies();
-    if (pesquisaAtiva) {
+    if (inputPesquisa.value !== '' && !inputCheckFavoritos.checked) {
         campoNumeroPagination.textContent = currentPagePesquisa;
         await searchMovie();
     } else if (inputCheckFavoritos.checked) {

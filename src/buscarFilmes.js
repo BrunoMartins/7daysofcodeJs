@@ -15,6 +15,12 @@ inputPesquisa.addEventListener('keydown', function(event) {
   }
 })
 
+inputPesquisa.addEventListener('blur',()=>{
+  currentPagePesquisa = 1;
+  searchMovie();
+
+})
+
 
 async function searchMovie() {
     const filmePesquisado = inputPesquisa.value;
@@ -28,8 +34,10 @@ async function searchMovie() {
       campoNumeroPagination.textContent = currentPage;
       const movies =  await getPopularMovies(currentPage);
       criarFilme(movies);
-      
     }
+    if(inputCheckAvaliacao.checked){
+      await ordenarAvaliacao();
+  }
   }
 
 

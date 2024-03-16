@@ -1,3 +1,9 @@
+const favotirosPorPagina = 20;
+let paginaAtualFavoritos;
+    let start;
+    let end ;
+
+
 // Função para verificar se um filme é favorito
 function isFilmeFavorito(movieId) {
     const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
@@ -27,38 +33,52 @@ async function verificarCheckbox() {
     const isChecked = inputCheckFavoritos.checked;
     if (isChecked) {
         cleanAllMovies();
-        ocultaPagination();
-        const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
-        criarFilme(favoritos);
+        currentpageFavoritos=1;
+        campoNumeroPagination.textContent = currentpageFavoritos;
+        await updateFavoritos();
     } else if (inputPesquisa !== ''){
         cleanAllMovies();
-        exibePagination();
-        moviesPesquisados = await searchMovieByName(inputPesquisa,currentPagePesquisa); 
-            criarFilme(moviesPesquisados);
-            
+        campoNumeroPagination.textContent = currentPagePesquisa;
+        await searchMovie();         
     } else {
         cleanAllMovies();
-        exibePagination();
+        campoNumeroPagination.textContent = currentPage;
         exibirFilmes();
+        
     }
+    
+    
+
+    
     
 }
 
-function ocultaPagination (){
-    firstPageButton.style.display = 'none';
-        prevPageButton.style.display = 'none';
-        nextPageButton.style.display = 'none';
-        lastPageButton.style.display = 'none';
-        campoNumeroPagination.style.display = 'none';
+
+
+function verificaUltimaPaginaFavorito (){
+    const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
+    let totalPaginas = Math.ceil(favoritos.length / favotirosPorPagina);
+    const lastPage = currentpageFavoritos > totalPaginas
+    if(lastPage){
+        currentpageFavoritos--
+        campoNumeroPagination.textContent = currentpageFavoritos;
+    }
 
 }
 
-function exibePagination(){
-    firstPageButton.style.display = 'flex';
-        prevPageButton.style.display = 'flex';
-        nextPageButton.style.display = 'flex';
-        lastPageButton.style.display = 'flex';
-        campoNumeroPagination.style.display = 'flex';
+async function updateFavoritos (){
+    let parametroPagination = updateFavoritosInformation();
+    criarFilme(parametroPagination);
+    window.scrollTo(0, 0);
+}
+
+function updateFavoritosInformation (){
+    const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
+    let paginaAtualFavoritos = currentpageFavoritos -1;
+    let start = paginaAtualFavoritos * favotirosPorPagina;
+    let end = start + favotirosPorPagina;
+    let favoritosPagination = favoritos.slice(start,end);
+    return favoritosPagination;
 
 }
 

@@ -46,6 +46,10 @@ async function verificarCheckbox() {
         exibirFilmes();
         
     }
+    if(inputCheckAvaliacao.checked){
+        await ordenarAvaliacao();
+    }
+    
     
     
 

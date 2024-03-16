@@ -58,6 +58,7 @@ const botaoFiltrar = document.getElementById('limpar-filtro');
 botaoFiltrar.addEventListener('click',()=>{
     cleanAllMovies();
     inputPesquisa.value = "";
+    pesquisaAtiva = false;
     inputCheckAvaliacao.checked = false;
     inputCheckFavoritos.checked = false;
     updateMovies();
@@ -86,6 +87,7 @@ botaoInicio.addEventListener('click', voltarInicio);
  function voltarInicio(){
     cleanAllMovies();
     currentPage = 1;
+    pesquisaAtiva = false;
     inputPesquisa.value = "";
     inputCheckAvaliacao.checked = false;
     inputCheckFavoritos.checked = false;

@@ -10,7 +10,7 @@ async function ordenarAvaliacao() {
     if (isChecked) {
         cleanAllMovies();
         let movies;
-        if (inputPesquisa !== '' && !inputCheckFavoritos.checked) {
+        if (pesquisaAtiva) {
             movies = await searchMovieByName(inputPesquisa,currentPagePesquisa);
         } else if (inputCheckFavoritos.checked) {
             favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
@@ -22,7 +22,7 @@ async function ordenarAvaliacao() {
         criarFilme(filmesOrdenados);
     } else {
         cleanAllMovies();
-        if (inputPesquisa !== '' && !inputCheckFavoritos.checked ) {
+        if (pesquisaAtiva) {
             await searchMovie();
         } else if (inputCheckFavoritos.checked) {
             favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];

@@ -36,7 +36,7 @@ async function verificarCheckbox() {
         currentpageFavoritos=1;
         campoNumeroPagination.textContent = currentpageFavoritos;
         await updateFavoritos();
-    } else if (inputPesquisa !== ''){
+    } else if (pesquisaAtiva){
         cleanAllMovies();
         campoNumeroPagination.textContent = currentPagePesquisa;
         await searchMovie();         

@@ -1,30 +1,30 @@
 const inputPesquisa = document.getElementById('movie-name');
 
-const iconePesquisa = document.querySelector('.searchIcon')
+const iconePesquisa = document.querySelector('.searchIcon');
+
+let pesquisaAtiva = false;
 
 iconePesquisa.addEventListener('click', () => {
   currentPagePesquisa = 1;
+  pesquisaAtiva = true;
   searchMovie();
 });
 
 inputPesquisa.addEventListener('keydown', function(event) {
   if (event.key === 'Enter') { 
     currentPagePesquisa=1;
+    pesquisaAtiva = true;
     searchMovie()
     return
   }
 })
 
-inputPesquisa.addEventListener('blur',()=>{
-  currentPagePesquisa = 1;
-  searchMovie();
 
-})
 
 
 async function searchMovie() {
     const filmePesquisado = inputPesquisa.value;
-    if (filmePesquisado != '') {
+    if (pesquisaAtiva) {
       cleanAllMovies()
       campoNumeroPagination.textContent = currentPagePesquisa;
       const filmesFiltrados = await searchMovieByName(filmePesquisado,currentPagePesquisa);
@@ -34,6 +34,7 @@ async function searchMovie() {
       campoNumeroPagination.textContent = currentPage;
       const movies =  await getPopularMovies(currentPage);
       criarFilme(movies);
+      pesquisaAtiva = false;
     }
     if(inputCheckAvaliacao.checked){
       await ordenarAvaliacao();

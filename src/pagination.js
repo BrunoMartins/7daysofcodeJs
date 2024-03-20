@@ -1,6 +1,5 @@
 let currentPage = 1;
 let currentPagePesquisa = 1
-const totalPages= 100;
 let currentpageFavoritos = 1;
 
 let campoNumeroPagination = document.querySelector('.campo-numero');
@@ -57,16 +56,16 @@ nextPageButton.addEventListener('click', () => {
     
 });
 
-lastPageButton.addEventListener('click', () => {
+lastPageButton.addEventListener('click', async () => {
     if (inputPesquisa.value !== '' && !inputCheckFavoritos.checked){
-        currentPagePesquisa = totalPages;
+        currentPagePesquisa = await ultimaPaginaFilmesPesquisados ();
     }else if (inputCheckFavoritos.checked){
         const favoritos = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
         let totalPaginas = Math.ceil(favoritos.length / favotirosPorPagina);
         currentpageFavoritos = totalPaginas;
     }
     else{
-        currentPage = totalPages;
+        currentPage = await ultimaPaginaFilmesGeral ();
 
     }
     
@@ -93,5 +92,19 @@ async function updateMovies() {
     
 }
 
+async function ultimaPaginaFilmesPesquisados (){
+    const title = inputPesquisa.value;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=2f15e111681bd6ea1812059f4a12c9ea&query=${title}&language=en-US`;
+  const res = await fetch(url);
+  const data = await res.json();
+  let ultimaPaginaPesquisados = data.total_pages;
+return ultimaPaginaPesquisados;
+}
 
-
+async function ultimaPaginaFilmesGeral (){
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=2f15e111681bd6ea1812059f4a12c9ea&language=en-US`;
+  const res = await fetch(url);
+  const data = await res.json();
+  let ultimaPaginaGeral = data.total_pages;
+return ultimaPaginaGeral;
+}

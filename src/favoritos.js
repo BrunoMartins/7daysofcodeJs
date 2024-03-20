@@ -36,6 +36,9 @@ async function verificarCheckbox() {
         currentpageFavoritos=1;
         campoNumeroPagination.textContent = currentpageFavoritos;
         await updateFavoritos();
+        if(inputCheckAvaliacao.checked){
+            await ordenarAvaliacao();
+        }
     } else if (pesquisaAtiva){
         cleanAllMovies();
         campoNumeroPagination.textContent = currentPagePesquisa;
@@ -43,12 +46,18 @@ async function verificarCheckbox() {
     } else {
         cleanAllMovies();
         campoNumeroPagination.textContent = currentPage;
-        exibirFilmes();
+        if(inputCheckAvaliacao.checked){
+            await ordenarAvaliacao();
+        } else{
+            exibirFilmes();
+        }
+
+        
+        
+        
         
     }
-    if(inputCheckAvaliacao.checked){
-        await ordenarAvaliacao();
-    }
+    
     
     
     

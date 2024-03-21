@@ -8,7 +8,6 @@ iconePesquisa.addEventListener('click', () => {
   currentPagePesquisa = 1;
   pesquisaAtiva = true;
   searchMovie();
-  ultimaFilmesPesquisados();
 });
 
 inputPesquisa.addEventListener('keydown', function(event) {

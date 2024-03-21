@@ -65,7 +65,7 @@ lastPageButton.addEventListener('click', async () => {
         currentpageFavoritos = totalPaginas;
     }
     else{
-        currentPage = await ultimaPaginaFilmesGeral ();
+        currentPage = 500;
 
     }
     
@@ -101,10 +101,4 @@ async function ultimaPaginaFilmesPesquisados (){
 return ultimaPaginaPesquisados;
 }
 
-async function ultimaPaginaFilmesGeral (){
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=2f15e111681bd6ea1812059f4a12c9ea&language=en-US`;
-  const res = await fetch(url);
-  const data = await res.json();
-  let ultimaPaginaGeral = data.total_pages;
-return ultimaPaginaGeral;
-}
+

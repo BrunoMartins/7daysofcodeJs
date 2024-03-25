@@ -20,7 +20,7 @@ function criarFilme(movies) {
                                 <span class="filmes__span">${movie.vote_average}</span>
                             </div>
                             <div>
-                                <img src="${isFavorited ? 'images/heart-fill.svg' : 'images/heart.svg'}" alt="" class="filmes__favoritos-botao" id="${movie.id}">
+                                <img src="${isFavorited ? 'images/heart-fill.svg' : 'images/Heart.svg'}" alt="" class="filmes__favoritos-botao" id="${movie.id}">
                                 <span class="filmes__span">Favoritar</span>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ function criarFilme(movies) {
                 adicionarFilmeFavorito(movie);
             }
 
-            botao.src = isFavorited ? 'images/heart.svg' : 'images/heart-fill.svg';//atualiza a imagem do favorito
+            botao.src = isFavorited ? 'images/Heart.svg' : 'images/heart-fill.svg';//atualiza a imagem do favorito
         });
     });
 

@@ -76,7 +76,7 @@ function limpaFavoritos() {
     // Atualizar a imagem de todos os botões de favoritos
     const botoesFavoritos = document.querySelectorAll('.filmes__favoritos-botao');
     botoesFavoritos.forEach(botao => {
-        botao.src =  'images/heart.svg';
+        botao.src =  'images/Heart.svg';
     });
 }
 

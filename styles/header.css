@@ -81,3 +81,20 @@ button:hover {
 .botoes{
   margin-top:3em;
 }
+
+@media screen and (max-width: 500px){
+  button{
+      width: 110px;
+      font-size: .8em;
+      margin: .4em;
+      padding: 0;
+  } 
+
+  #limpar-filtro {
+    margin: 0;
+  }
+
+  .input__container{
+    width: 80%;
+  }
+}
